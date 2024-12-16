@@ -1,8 +1,16 @@
 from textnode import TextNode, TextType
-from htmlnode import HTMLNode, LeafNode
+from htmlnode import HTMLNode, LeafNode, ParentNode
 
 def main():
-  dummy = LeafNode("a", "Click me!", {"href": "https://www.google.com"}) 
-  print("result ->", dummy.to_html())
+  node = ParentNode(
+    "p",
+    [
+        LeafNode("b", "Bold text"),
+        LeafNode(None, "Normal text"),
+        LeafNode("i", "italic text"),
+        LeafNode(None, "Normal text"),
+    ],
+  )
+  print(node.to_html())
 
 main()
