@@ -2,6 +2,7 @@ import unittest
 
 from htmlnode import HTMLNode, LeafNode, ParentNode
 
+
 class TestHTMLNode(unittest.TestCase):
 
   def test_repr(self):
@@ -75,6 +76,7 @@ class TestHTMLNode(unittest.TestCase):
       node.to_html(),
       "<h2><b>Bold text</b>Normal text<i>italic text</i>Normal text</h2>",
     )
+
 
 
 
