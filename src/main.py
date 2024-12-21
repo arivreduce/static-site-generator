@@ -1,23 +1,20 @@
 import os, shutil
+from copy_files import copy_files_recursive
+from generate_page import generate_page
 source = "./static"
 destination = "./public"
+dir_path_content = "./content"
+template_path = "./template.html"
 
 def main():
   if os.path.exists(destination):
     shutil.rmtree(destination)
   copy_files_recursive(source, destination)
-  
-def copy_files_recursive(source_dir_path, dest_dir_path):
-  if not os.path.exists(dest_dir_path):
-    os.mkdir(dest_dir_path)
-
-  for filename in os.listdir(source_dir_path):
-    from_path = os.path.join(source_dir_path, filename)
-    dest_path = os.path.join(dest_dir_path, filename)
-    print(f" * {from_path} -> {dest_path}")
-    if os.path.isfile(from_path):
-      shutil.copy(from_path, dest_path)
-    else:
-      copy_files_recursive(from_path, dest_path)
+  print("Generating page...")
+  generate_page(
+    os.path.join(dir_path_content, "index.md"),
+    template_path,
+    os.path.join(destination, "index.html"),
+  )
 
 main()
